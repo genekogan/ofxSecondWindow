@@ -1,6 +1,7 @@
 #include "ofxSecondWindow.h"
 
-void ofxSecondWindow::setup(const char *name, int xpos, int ypos, int width, int height) {
+void ofxSecondWindow::setup(const char *name, int xpos, int ypos, int width, int height, bool undecorated) {
+    glfwWindowHint(GLFW_DECORATED, !undecorated);
     mainWindow = glfwGetCurrentContext();
     auxWindow = glfwCreateWindow(width, height, name, NULL, mainWindow);
     glfwSetWindowPos(auxWindow, xpos, ypos);
