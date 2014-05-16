@@ -5,9 +5,9 @@ void ofApp::setup(){
     ofSetWindowTitle("first window");
 
     // the arguments for the second window are its initial x and y position,
-    // and its width and height. the width and height should match the fbo.
-    // the last argument is whether the window should be undecorated, i.e. title bar
-    // is visible. setting it to true removes the title bar.
+    // and its width and height. the last argument is whether the window
+    // should be undecorated, i.e. title bar is visible. setting it to
+    // true removes the title bar.
 
     secondWindow.setup("second window", 50, 50, 1024, 768, false);
 
@@ -15,7 +15,7 @@ void ofApp::setup(){
     // monitor or projector. this is a good way to set up a fullscreen display, while
     // retaining a control window in the primary monitor.
     
-    //secondWindow.setup("second window", ofGetScreenWidth(), 0, fbo.getWidth(), fbo.getHeight(), true);
+    //secondWindow.setup("second window", ofGetScreenWidth(), 0, 1280, 800, true);
 }
 
 //--------------------------------------------------------------
