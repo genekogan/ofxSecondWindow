@@ -7,8 +7,9 @@ class ofxSecondWindow {
     
 public:
     void setup(const char *name, int xpos, int ypos, int width, int height, bool undecorated);
-    void draw(ofFbo *fbo);
-
+    void begin();
+    void end();
+    
 private:
     GLFWwindow *mainWindow, *auxWindow;
 };

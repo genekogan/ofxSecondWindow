@@ -7,17 +7,19 @@ void ofxSecondWindow::setup(const char *name, int xpos, int ypos, int width, int
     glfwSetWindowPos(auxWindow, xpos, ypos);
 }
 
-void ofxSecondWindow::draw(ofFbo *fbo) {
+void ofxSecondWindow::begin(){
     glfwMakeContextCurrent(auxWindow);
     int width, height;
     glfwGetFramebufferSize(auxWindow, &width, &height);
     glViewport(0, 0, width, height);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(-1,1,1,-1,-1,1);
+    glOrtho(0, width, height, 0, -1, 1);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    fbo->draw(-1, -1, 2, 2);
+}
+
+void ofxSecondWindow::end(){
     glfwSwapBuffers(auxWindow);
     glfwPollEvents();
     glfwMakeContextCurrent(mainWindow);

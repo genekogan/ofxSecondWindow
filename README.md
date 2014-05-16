@@ -16,8 +16,10 @@ undecorated is a bool -- if true, the second window has its title bar hidden (un
 	
 where width and height refer to the resolution of the second monitor / projector.
 
-To draw to it, draw first to an ofFbo, and then pass its pointer to secondWindow.
+To draw to it, encapsulate all drawing commands between a begin() and end() block, e.g.
 
-	secondWindow.draw(&fbo);
+	secondWindow.begin();
+	// draw to second window here
+	secondWindow.end();
 	
 You can make as many instances of ofxSecondWindow as you want to support multiple windows.

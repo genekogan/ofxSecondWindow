@@ -21,5 +21,4 @@ public:
     void gotMessage(ofMessage msg);
     
     ofxSecondWindow secondWindow;
-    ofFbo fbo;
 };
