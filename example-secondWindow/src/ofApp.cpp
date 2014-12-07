@@ -26,15 +26,15 @@ void ofApp::update(){
 void ofApp::draw(){
     // draw to the main window
     ofSetColor(0, 255, 0);
-    ofDrawBitmapString("this is the first window", 100, 100);
-    ofRect(150, 190, 240, 160);
+    ofDrawBitmapString("this is the\nfirst window", 30, 80);
+    ofRect(20, 20, 50, 40);
         
     // draw the second window
     secondWindow.begin();
     ofBackground(255);
     ofSetColor(0, 0, 255);
-    ofDrawBitmapString("this is the second window", 100, 100);
-    ofEllipse(320, 250, 200, 200);
+    ofDrawBitmapString("this is the\nsecond window", 30, 65);
+    ofEllipse(20, 20, 60, 30);
     secondWindow.end();
 
 }
