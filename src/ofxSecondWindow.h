@@ -9,6 +9,8 @@ public:
     void setup(const char *name, int xpos, int ypos, int width, int height, bool undecorated);
     void begin();
     void end();
+    void show();
+    void hide();
     int getWidth() { return width; }
     int getHeight() { return height; }
     

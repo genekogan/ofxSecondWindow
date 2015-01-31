@@ -35,3 +35,11 @@ void ofxSecondWindow::end(){
     glfwPollEvents();
     glfwMakeContextCurrent(mainWindow);
 }
+
+void ofxSecondWindow::show(){
+    glfwShowWindow(auxWindow);
+}
+
+void ofxSecondWindow::hide(){
+    glfwHideWindow(auxWindow);
+}
