@@ -1,5 +1,12 @@
 #include "ofxSecondWindow.h"
 
+ofxSecondWindow::ofxSecondWindow():mainWindow(NULL),auxWindow(NULL),width(0),height(0){}
+
+ofxSecondWindow::~ofxSecondWindow() {
+	if(auxWindow) {
+		glfwDestroyWindow(auxWindow);
+	}
+}
 void ofxSecondWindow::setup(const char *name, int xpos, int ypos, int width, int height, bool undecorated) {
     this->width = width;
     this->height = height;

@@ -6,6 +6,8 @@
 class ofxSecondWindow {
     
 public:
+	ofxSecondWindow();
+	~ofxSecondWindow();
     void setup(const char *name, int xpos, int ypos, int width, int height, bool undecorated);
     void begin();
     void end();
