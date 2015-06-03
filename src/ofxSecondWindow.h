@@ -13,6 +13,7 @@ public:
     void end();
     void show();
     void hide();
+    void close();
     int getWidth() { return width; }
     int getHeight() { return height; }
     

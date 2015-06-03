@@ -10,9 +10,9 @@ A new window is initialized:
 	
 where name is the name of the window, x and y are the initial position, and width and height are the size of the second window.
 
-undecorated is a bool -- if true, the second window has its title bar hidden (undecorated). you can use this to create a presentation window, e.g. in a second monitor or projector, i.e.
+_undecorated_ is a bool -- if true, the second window has its title bar hidden (undecorated). you can use this to create a presentation window, e.g. in a second monitor or projector, i.e.
 
-	secondWindow.setup("presentation window", ofGetScreenWidth(), 0, width, height, true);
+	secondWindow.setup("Window title", ofGetScreenWidth(), 0, width, height, true);
 	
 where width and height refer to the resolution of the second monitor / projector.
 
@@ -23,3 +23,7 @@ To draw to it, encapsulate all drawing commands between a begin() and end() bloc
 	secondWindow.end();
 	
 You can make as many instances of ofxSecondWindow as you want to support multiple windows.
+
+To destroy a window, use :
+
+    secondWindow.close();

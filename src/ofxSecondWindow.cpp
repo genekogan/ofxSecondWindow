@@ -50,3 +50,9 @@ void ofxSecondWindow::show(){
 void ofxSecondWindow::hide(){
     glfwHideWindow(auxWindow);
 }
+
+void ofxSecondWindow::close(){
+    if(auxWindow) {
+        glfwDestroyWindow(auxWindow);
+    }
+}
