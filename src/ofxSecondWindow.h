@@ -14,10 +14,15 @@ public:
     void show();
     void hide();
     void close();
-    int getWidth() { return width; }
-    int getHeight() { return height; }
+    void setSize(int newWidth, int newHeight);
+    void setPosition(int newX, int newY);
+    int getWidth();
+    int getHeight();
+    int getPositionX();
+    int getPositionY();
+    bool isInited();
     
 private:
     GLFWwindow *mainWindow, *auxWindow;
-    int width, height;
+    bool bInited;
 };
