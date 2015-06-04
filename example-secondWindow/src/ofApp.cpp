@@ -30,9 +30,9 @@ void ofApp::draw(){
 	ofRect(20, 20, 50, 40);
 	ofSetColor(0);
     ofDrawBitmapString("This is the first window", 30, 80);
-	ofDrawBitmapString("Press up, left, down and right to displace the second window", 30, 110);
-	ofDrawBitmapString("Press + and - to resize it", 30, 140);
-	ofDrawBitmapString("Press c to close and s to set it up back again (be carefull with these !) ", 30, 170);
+	ofDrawBitmapString("Press up, left, down and right to displace the second window", 30, 120);
+	ofDrawBitmapString("Press + and - to resize it", 30, 135);
+	ofDrawBitmapString("Press c to close and s to set it up back again (be carefull with these !) ", 30, 150);
         
     // draw the second window
 	if (secondWindow.isInited()) {
@@ -54,9 +54,7 @@ void ofApp::keyPressed(int key){
 			draw();
             break;
 		case 's':			// Re-setup secondWindow
-			if (!secondWindow.isInited()) {
-				secondWindow.setup("Second window", 200, 200, 1024, 768, false);
-			}
+			secondWindow.setup("Second window", 200, 200, 1024, 768, false);
 			draw();
 			break;
         case OF_KEY_UP:     // Move secondWindow up
@@ -83,12 +81,14 @@ void ofApp::keyPressed(int key){
 			if (secondWindow.isInited()) {
 				secondWindow.setPosition(secondWindow.getPositionX() - 25, secondWindow.getPositionY() - 25);
 				secondWindow.setSize(secondWindow.getWidth() + 50, secondWindow.getHeight() + 50);
+				draw();
 			}
             break;
 		case '-':			// Shrink secondWindow
 			if (secondWindow.isInited()) {
 				secondWindow.setPosition(secondWindow.getPositionX() + 25, secondWindow.getPositionY() + 25);
 				secondWindow.setSize(secondWindow.getWidth() - 50, secondWindow.getHeight() - 50);
+				draw();
 			}
 			break;
         default:
