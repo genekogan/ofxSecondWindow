@@ -21,6 +21,8 @@ To draw to it, encapsulate all drawing commands between a begin() and end() bloc
 	secondWindow.begin();
 	// draw to second window here
 	secondWindow.end();
+
+See the example project's code for use of useful _setSize_ and _setPosition_ functions.
 	
 You can make as many instances of ofxSecondWindow as you want to support multiple windows.
 
