@@ -108,6 +108,26 @@ void ofxSecondWindow::setPosition(int newXPos, int newYPos){
     glfwSetWindowPos(auxWindow, newXPos, newYPos);
 }
 
+void ofxSecondWindow::setToMonitor(int monitorId, bool resize){
+    if (!bInited) {
+        ofLogWarning("ofxSecondWindow", "Window was not set up, or has been closed.");
+        return;
+    }
+    int monitorsCount;
+    GLFWmonitor ** monitorsList = glfwGetMonitors(&monitorsCount);
+    if (monitorId < monitorsCount) {
+        int monitorX, monitorY;
+        glfwGetMonitorPos(monitorsList[monitorId], &monitorX, &monitorY);
+        setPosition(monitorX, monitorY);
+        if (resize) {
+            setSize(getMonitorWidth(monitorId), getMonitorHeight(monitorId));
+        }
+    } else {
+        ofLogWarning("ofxSecondWindow", "The requested monitor does not exist or is not detected.");
+        return;
+    }
+}
+
 int ofxSecondWindow::getWidth(){
     if (!bInited) {
         ofLogWarning("ofxSecondWindow", "Window was not set up, or has been closed.");
@@ -146,6 +166,40 @@ int ofxSecondWindow::getPositionY(){
     int xPos, yPos;
     glfwGetWindowPos(auxWindow, &xPos, &yPos);
     return yPos;
+}
+
+int ofxSecondWindow::getMonitorsCount(){
+    int monitorsCount;
+    glfwGetMonitors(&monitorsCount);
+    return monitorsCount;
+}
+
+int ofxSecondWindow::getMonitorWidth(int monitorId){
+    int monitorsCount;
+    GLFWmonitor ** monitorsList = glfwGetMonitors(&monitorsCount);
+    
+    if (monitorId < monitorsCount) {
+        int monitorX, monitorY;
+        const GLFWvidmode * mode = glfwGetVideoMode(monitorsList[monitorId]);
+        return mode->width;
+    } else {
+        ofLogWarning("ofxSecondWindow", "The requested monitor does not exist or is not detected.");
+        return 0;
+    }
+}
+
+int ofxSecondWindow::getMonitorHeight(int monitorId){
+    int monitorsCount;
+    GLFWmonitor ** monitorsList = glfwGetMonitors(&monitorsCount);
+    
+    if (monitorId < monitorsCount) {
+        int monitorX, monitorY;
+        const GLFWvidmode * mode = glfwGetVideoMode(monitorsList[monitorId]);
+        return mode->height;
+    } else {
+        ofLogWarning("ofxSecondWindow", "The requested monitor does not exist or is not detected.");
+        return 0;
+    }
 }
 
 bool ofxSecondWindow::isInited(){

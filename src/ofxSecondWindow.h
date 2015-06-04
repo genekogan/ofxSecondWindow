@@ -16,10 +16,14 @@ public:
     void close();
     void setSize(int newWidth, int newHeight, bool resizeCentered = false);
     void setPosition(int newX, int newY);
+    void setToMonitor(int monitorId, bool resize = false);
     int getWidth();
     int getHeight();
     int getPositionX();
     int getPositionY();
+    int getMonitorsCount();
+    int getMonitorWidth(int monitorId = 0);
+    int getMonitorHeight(int monitorId = 0);
     bool isInited();
     
 private:
