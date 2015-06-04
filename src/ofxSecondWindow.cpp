@@ -5,11 +5,7 @@ ofxSecondWindow::ofxSecondWindow():mainWindow(NULL),auxWindow(NULL),bInited(fals
 }
 
 ofxSecondWindow::~ofxSecondWindow() {
-	bInited = false;
-    glfwPollEvents();
-    glfwMakeContextCurrent(mainWindow);
-    glfwDestroyWindow(auxWindow);
-    auxWindow = NULL;
+    close();
 }
 
 void ofxSecondWindow::setup(const char *name, int xpos, int ypos, int width, int height, bool undecorated) {
@@ -76,24 +72,31 @@ void ofxSecondWindow::hide(){
 }
 
 void ofxSecondWindow::close(){
+    if (!bInited) { return; }
     bInited = false;
     glfwPollEvents();
-    glfwMakeContextCurrent(mainWindow);
     glfwDestroyWindow(auxWindow);
-    auxWindow = NULL;
+    glfwMakeContextCurrent(mainWindow);
 }
 
-void ofxSecondWindow::setSize(int newWidth, int newHeight){
+void ofxSecondWindow::setSize(int newWidth, int newHeight, bool resizeCentered){
     if (!bInited) {
         ofLog(OF_LOG_WARNING, "SecondWindow : window was not inited, or has been closed.");
         return;
     }
     if (newWidth >= 0 && newHeight >= 0) {
-        // Little hack since at resize, Y grows up and not down like oF standard
-        int yDelta = newHeight - getHeight();
-        setPosition(getPositionX(), getPositionY() + yDelta);
         
+        int xDelta = newWidth - getWidth();
+        int yDelta = newHeight - getHeight();
+        
+        if (resizeCentered) {
+            setPosition(getPositionX() - (xDelta / 2), getPositionY() + (yDelta / 2));
+        } else {
+            // Little hack since at resize, Y grows up and not down like oF standard
+            setPosition(getPositionX(), getPositionY() + yDelta);
+        }
         glfwSetWindowSize(auxWindow, newWidth, newHeight);
+        
     } else {
         ofLog(OF_LOG_ERROR, "SecondWindow : windows should not be resized with negative values.");
         return;

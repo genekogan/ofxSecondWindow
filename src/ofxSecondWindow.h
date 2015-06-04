@@ -14,7 +14,7 @@ public:
     void show();
     void hide();
     void close();
-    void setSize(int newWidth, int newHeight);
+    void setSize(int newWidth, int newHeight, bool resizeCentered = false);
     void setPosition(int newX, int newY);
     int getWidth();
     int getHeight();

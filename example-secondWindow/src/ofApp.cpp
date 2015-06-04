@@ -47,6 +47,11 @@ void ofApp::draw(){
 }
 
 //--------------------------------------------------------------
+void ofApp::exit(){
+	secondWindow.close();
+}
+
+//--------------------------------------------------------------
 void ofApp::keyPressed(int key){
     switch (key){
         case 'c':			// Close secondWindow
@@ -79,15 +84,13 @@ void ofApp::keyPressed(int key){
             break;
         case '+':			// Widen secondWindow
 			if (secondWindow.isInited()) {
-				secondWindow.setPosition(secondWindow.getPositionX() - 25, secondWindow.getPositionY() - 25);
-				secondWindow.setSize(secondWindow.getWidth() + 50, secondWindow.getHeight() + 50);
+				secondWindow.setSize(secondWindow.getWidth() + 50, secondWindow.getHeight() + 50, true);
 				draw();
 			}
             break;
 		case '-':			// Shrink secondWindow
 			if (secondWindow.isInited()) {
-				secondWindow.setPosition(secondWindow.getPositionX() + 25, secondWindow.getPositionY() + 25);
-				secondWindow.setSize(secondWindow.getWidth() - 50, secondWindow.getHeight() - 50);
+				secondWindow.setSize(secondWindow.getWidth() - 50, secondWindow.getHeight() - 50, true);
 				draw();
 			}
 			break;
