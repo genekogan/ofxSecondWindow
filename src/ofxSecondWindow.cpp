@@ -1,16 +1,14 @@
 #include "ofxSecondWindow.h"
 
-ofxSecondWindow::ofxSecondWindow():mainWindow(NULL),auxWindow(NULL),bInited(false){
-    glfwInit();
-}
+ofxSecondWindow::ofxSecondWindow():mainWindow(NULL),auxWindow(NULL),bInited(false){}
 
 ofxSecondWindow::~ofxSecondWindow() {
-    close();
+    bInited = false;
 }
 
 void ofxSecondWindow::setup(const char *name, int xpos, int ypos, int width, int height, bool undecorated) {
     if (bInited) {
-        ofLogWarning("ofxSecondWindow", "Window was not inited, or has been closed.");
+        ofLogWarning("ofxSecondWindow", "Window has already been set up.");
         return;
     }
     glfwWindowHint(GLFW_DECORATED, !undecorated);
@@ -31,7 +29,7 @@ void ofxSecondWindow::setup(const char *name, int xpos, int ypos, int width, int
 
 void ofxSecondWindow::begin(){
     if (!bInited) {
-        ofLogWarning("ofxSecondWindow", "Window was not inited, or has been closed.");
+        ofLogWarning("ofxSecondWindow", "Window was not set up, or has been closed.");
         return;
     }
     glfwMakeContextCurrent(auxWindow);
@@ -47,7 +45,7 @@ void ofxSecondWindow::begin(){
 
 void ofxSecondWindow::end(){
     if (!bInited) {
-        ofLogWarning("ofxSecondWindow", "Window was not inited, or has been closed.");
+        ofLogWarning("ofxSecondWindow", "Window was not set up, or has been closed.");
         return;
     }
     glfwSwapBuffers(auxWindow);
@@ -57,7 +55,7 @@ void ofxSecondWindow::end(){
 
 void ofxSecondWindow::show(){
     if (!bInited) {
-        ofLogWarning("ofxSecondWindow", "Window was not inited, or has been closed.");
+        ofLogWarning("ofxSecondWindow", "Window was not set up, or has been closed.");
         return;
     }
     glfwShowWindow(auxWindow);
@@ -65,24 +63,22 @@ void ofxSecondWindow::show(){
 
 void ofxSecondWindow::hide(){
     if (!bInited) {
-        ofLogWarning("ofxSecondWindow", "Window was not inited, or has been closed.");
+        ofLogWarning("ofxSecondWindow", "Window was not set up, or has been closed.");
         return;
     }
     glfwHideWindow(auxWindow);
 }
 
 void ofxSecondWindow::close(){
-    if (!bInited) { return; }
-    bInited = false;
-    glfwSwapBuffers(auxWindow);
-    glfwPollEvents();
-    glfwMakeContextCurrent(mainWindow);
-    glfwDestroyWindow(auxWindow);
+    if (bInited) {
+        glfwDestroyWindow(auxWindow);
+        bInited = false;
+    }
 }
 
 void ofxSecondWindow::setSize(int newWidth, int newHeight, bool resizeCentered){
     if (!bInited) {
-        ofLogWarning("ofxSecondWindow", "Window was not inited, or has been closed.");
+        ofLogWarning("ofxSecondWindow", "Window was not set up, or has been closed.");
         return;
     }
     if (newWidth >= 0 && newHeight >= 0) {
@@ -106,7 +102,7 @@ void ofxSecondWindow::setSize(int newWidth, int newHeight, bool resizeCentered){
 
 void ofxSecondWindow::setPosition(int newXPos, int newYPos){
     if (!bInited) {
-        ofLogWarning("ofxSecondWindow", "Window was not inited, or has been closed.");
+        ofLogWarning("ofxSecondWindow", "Window was not set up, or has been closed.");
         return;
     }
     glfwSetWindowPos(auxWindow, newXPos, newYPos);
@@ -114,7 +110,7 @@ void ofxSecondWindow::setPosition(int newXPos, int newYPos){
 
 int ofxSecondWindow::getWidth(){
     if (!bInited) {
-        ofLogWarning("ofxSecondWindow", "Window was not inited, or has been closed.");
+        ofLogWarning("ofxSecondWindow", "Window was not set up, or has been closed.");
         return 0;
     }
     int width, height;
@@ -124,7 +120,7 @@ int ofxSecondWindow::getWidth(){
 
 int ofxSecondWindow::getHeight(){
     if (!bInited) {
-        ofLogWarning("ofxSecondWindow", "Window was not inited, or has been closed.");
+        ofLogWarning("ofxSecondWindow", "Window was not set up, or has been closed.");
         return 0;
     }
     int width, height;
@@ -134,7 +130,7 @@ int ofxSecondWindow::getHeight(){
 
 int ofxSecondWindow::getPositionX(){
     if (!bInited) {
-        ofLogWarning("ofxSecondWindow", "Window was not inited, or has been closed.");
+        ofLogWarning("ofxSecondWindow", "Window was not set up, or has been closed.");
         return 0;
     }
     int xPos, yPos;
@@ -144,7 +140,7 @@ int ofxSecondWindow::getPositionX(){
 
 int ofxSecondWindow::getPositionY(){
     if (!bInited) {
-        ofLogWarning("ofxSecondWindow", "Window was not inited, or has been closed.");
+        ofLogWarning("ofxSecondWindow", "Window was not set up, or has been closed.");
         return 0;
     }
     int xPos, yPos;
