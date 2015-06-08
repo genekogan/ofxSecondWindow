@@ -29,7 +29,7 @@ void ofxSecondWindow::setup(const char *name, int xpos, int ypos, int width, int
 
 void ofxSecondWindow::begin(){
     if (!bInited) {
-        ofLogWarning("ofxSecondWindow", "Window was not set up, or has been closed.");
+        throw std::invalid_argument("ofxSecondWindow: Window was not set up, or has been closed.");
         return;
     }
     glfwMakeContextCurrent(auxWindow);
@@ -45,7 +45,7 @@ void ofxSecondWindow::begin(){
 
 void ofxSecondWindow::end(){
     if (!bInited) {
-        ofLogWarning("ofxSecondWindow", "Window was not set up, or has been closed.");
+        throw std::invalid_argument("ofxSecondWindow: Window was not set up, or has been closed.");
         return;
     }
     glfwSwapBuffers(auxWindow);
