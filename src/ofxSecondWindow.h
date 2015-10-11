@@ -13,6 +13,9 @@ public:
     void hide();
     void toggleHidden();
     
+    void setWindowPosition(int x, int y);
+    void setWindowSize(int width, int height);
+    
     int getWidth() { return width; }
     int getHeight() { return height; }
     
