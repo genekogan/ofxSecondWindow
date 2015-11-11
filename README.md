@@ -1,6 +1,9 @@
 # ofxSecondWindow 
 
 
+## [Deprecated] openFrameworks now supports multiple windows as of release 0.9. Thus this addon is unnecessary, and will no longer be maintained. See examples/events/multiWindowExample to see how to create multiple windows in OF.
+
+
 ### About
 
 This is a simple [openFrameworks](http://www.openframeworks.cc) addon which allows for creating multiple windows. It is based on the [discussion here](http://forum.openframeworks.cc/t/multiple-windows-using-glfw/12947/12) and [Daniel Almeida's code](https://github.com/danielfilipealmeida/MultiWindow).
